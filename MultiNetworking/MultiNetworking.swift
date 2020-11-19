@@ -7,63 +7,32 @@
 
 import Foundation
 
-typealias NetworkCompletionHandler = (Data?, URLResponse?, Error?) -> Void
-typealias ErrorHandler = (String) -> Void
-
 class MultiNetworking {
     
-    func getData<T: Decodable>(urlString: String,
-                               parameters: [String : String] = [:],
-                               headers: [String : String] = [:],
-                               successHandler: @escaping (T) -> Void,
-                               errorHandler: @escaping ErrorHandler) {
+    func requestMultipleEndpoints(queryObjects:[QueryObject]) {
         
-        let completionHandler: NetworkCompletionHandler = { (data, urlResponse, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                errorHandler(Constants.genericError)
-                return
-            }
+        var result:[Data] = []
+        
+        let operation1 = BlockOperation {
+            let group = DispatchGroup()
             
-            if self.isSuccessCode(urlResponse) {
-                guard let data = data else {
-                    print("Unable to parse the response in given type \(T.self)")
-                    return errorHandler("Unable to parse the response in given type \(T.self)")
-                }
-                if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
-                    successHandler(responseObject)
-                    return
+            for query in queryObjects {
+                group.enter()
+                NetworkLayer.getData(urlString: query.url, parameters: query.parameters, headers: query.headers) { data in
+                    result.append(data)
+                    group.leave()
+                } errorHandler: { errorString in
+                    print(errorString)
+                    group.leave()
                 }
             }
-            errorHandler(Constants.genericError)
+            print(result)
+            group.wait()
+            
         }
-        
-        var components = URLComponents(string: urlString)!
-        components.queryItems = parameters.map { (key, value) in
-            URLQueryItem(name: key, value: value)
+        let operation2 = BlockOperation {
+            print("done")
         }
-        var request = URLRequest(url: components.url!)
-        
-        request.allHTTPHeaderFields = headers
-        
-        if InternetConnectionManager.isConnectedToNetwork() {
-            URLSession.shared.dataTask(with: request,
-                                       completionHandler: completionHandler)
-                .resume()
-        } else {
-            errorHandler(Constants.noConnectionError)
-        }
-        
-    }
-    
-    private func isSuccessCode(_ statusCode: Int) -> Bool {
-        return statusCode >= 200 && statusCode < 300
-    }
-    
-    private func isSuccessCode(_ response: URLResponse?) -> Bool {
-        guard let urlResponse = response as? HTTPURLResponse else {
-            return false
-        }
-        return isSuccessCode(urlResponse.statusCode)
+        operation2.addDependency(operation1)
     }
 }

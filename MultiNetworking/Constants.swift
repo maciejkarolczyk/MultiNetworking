@@ -13,4 +13,5 @@ struct Constants {
     static let noConnectionError = "Not connected to Internet"
     
     static let dailyMotionEndpoint = "https://api.dailymotion.com/users?fields=avatar_360_url,username"
+    static let gitHubUsersEndpoint = "https://api.github.com/users"
 }

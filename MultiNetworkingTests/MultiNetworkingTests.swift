@@ -45,6 +45,29 @@ class MultiNetworkingTests: XCTestCase {
         wait(for: [promise], timeout: 5)
     }
     
+    func testValidCallToGithubAPIGetsHTTPStatusCode200() {
+        // given
+        let url = URL(string: Constants.gitHubUsersEndpoint)
+        let promise = expectation(description: "Status code: 200")
+        
+        // when
+        let dataTask = sut.dataTask(with: url!) { data, response, error in
+            // then
+            if let error = error {
+                XCTFail("Error: \(error.localizedDescription)")
+                return
+            } else if let statusCode = (response as? HTTPURLResponse)?.statusCode {
+                if statusCode == 200 {
+                    promise.fulfill()
+                } else {
+                    XCTFail("Status code: \(statusCode)")
+                }
+            }
+        }
+        dataTask.resume()
+        wait(for: [promise], timeout: 5)
+    }
+    
     func testCallToDailyMotionAPICompletes() {
         // given
         let url = URL(string: Constants.dailyMotionEndpoint)
@@ -65,7 +88,25 @@ class MultiNetworkingTests: XCTestCase {
         XCTAssertNil(responseError)
         XCTAssertEqual(statusCode, 200)
     }
-
     
-
+    func testCallToGithubAPICompletes() {
+        // given
+        let url = URL(string: Constants.gitHubUsersEndpoint)
+        let promise = expectation(description: "Completion handler invoked")
+        var statusCode: Int?
+        var responseError: Error?
+        
+        // when
+        let dataTask = sut.dataTask(with: url!) { data, response, error in
+            statusCode = (response as? HTTPURLResponse)?.statusCode
+            responseError = error
+            promise.fulfill()
+        }
+        dataTask.resume()
+        wait(for: [promise], timeout: 5)
+        
+        // then
+        XCTAssertNil(responseError)
+        XCTAssertEqual(statusCode, 200)
+    }
 }

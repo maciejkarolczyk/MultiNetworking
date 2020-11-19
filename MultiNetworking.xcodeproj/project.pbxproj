@@ -10,9 +10,11 @@
 		09D0CD4625667A8800ED7A66 /* MultiNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D0CD3C25667A8700ED7A66 /* MultiNetworking.framework */; };
 		09D0CD4B25667A8800ED7A66 /* MultiNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD4A25667A8800ED7A66 /* MultiNetworkingTests.swift */; };
 		09D0CD4D25667A8800ED7A66 /* MultiNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 09D0CD3F25667A8700ED7A66 /* MultiNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		09D0CD5D25667E6000ED7A66 /* MultiNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD5C25667E6000ED7A66 /* MultiNetworking.swift */; };
+		09D0CD5D25667E6000ED7A66 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD5C25667E6000ED7A66 /* NetworkLayer.swift */; };
 		09D0CD6125667EC700ED7A66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD6025667EC700ED7A66 /* Constants.swift */; };
 		09D0CD652566800200ED7A66 /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */; };
+		09D0CD692566897800ED7A66 /* MultiNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD682566897800ED7A66 /* MultiNetworking.swift */; };
+		09D0CD6D2566914800ED7A66 /* QueryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD6C2566914800ED7A66 /* QueryObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,9 +34,11 @@
 		09D0CD4525667A8800ED7A66 /* MultiNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D0CD4A25667A8800ED7A66 /* MultiNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNetworkingTests.swift; sourceTree = "<group>"; };
 		09D0CD4C25667A8800ED7A66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09D0CD5C25667E6000ED7A66 /* MultiNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNetworking.swift; sourceTree = "<group>"; };
+		09D0CD5C25667E6000ED7A66 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		09D0CD6025667EC700ED7A66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
+		09D0CD682566897800ED7A66 /* MultiNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNetworking.swift; sourceTree = "<group>"; };
+		09D0CD6C2566914800ED7A66 /* QueryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +83,11 @@
 			children = (
 				09D0CD3F25667A8700ED7A66 /* MultiNetworking.h */,
 				09D0CD4025667A8700ED7A66 /* Info.plist */,
-				09D0CD5C25667E6000ED7A66 /* MultiNetworking.swift */,
+				09D0CD5C25667E6000ED7A66 /* NetworkLayer.swift */,
 				09D0CD6025667EC700ED7A66 /* Constants.swift */,
 				09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */,
+				09D0CD682566897800ED7A66 /* MultiNetworking.swift */,
+				09D0CD6C2566914800ED7A66 /* QueryObject.swift */,
 			);
 			path = MultiNetworking;
 			sourceTree = "<group>";
@@ -205,8 +211,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				09D0CD652566800200ED7A66 /* InternetConnectionManager.swift in Sources */,
-				09D0CD5D25667E6000ED7A66 /* MultiNetworking.swift in Sources */,
+				09D0CD5D25667E6000ED7A66 /* NetworkLayer.swift in Sources */,
 				09D0CD6125667EC700ED7A66 /* Constants.swift in Sources */,
+				09D0CD6D2566914800ED7A66 /* QueryObject.swift in Sources */,
+				09D0CD692566897800ED7A66 /* MultiNetworking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
