@@ -10,6 +10,9 @@
 		09D0CD4625667A8800ED7A66 /* MultiNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09D0CD3C25667A8700ED7A66 /* MultiNetworking.framework */; };
 		09D0CD4B25667A8800ED7A66 /* MultiNetworkingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD4A25667A8800ED7A66 /* MultiNetworkingTests.swift */; };
 		09D0CD4D25667A8800ED7A66 /* MultiNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 09D0CD3F25667A8700ED7A66 /* MultiNetworking.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		09D0CD5D25667E6000ED7A66 /* MultiNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD5C25667E6000ED7A66 /* MultiNetworking.swift */; };
+		09D0CD6125667EC700ED7A66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD6025667EC700ED7A66 /* Constants.swift */; };
+		09D0CD652566800200ED7A66 /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		09D0CD4525667A8800ED7A66 /* MultiNetworkingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MultiNetworkingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D0CD4A25667A8800ED7A66 /* MultiNetworkingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNetworkingTests.swift; sourceTree = "<group>"; };
 		09D0CD4C25667A8800ED7A66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09D0CD5C25667E6000ED7A66 /* MultiNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNetworking.swift; sourceTree = "<group>"; };
+		09D0CD6025667EC700ED7A66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			children = (
 				09D0CD3F25667A8700ED7A66 /* MultiNetworking.h */,
 				09D0CD4025667A8700ED7A66 /* Info.plist */,
+				09D0CD5C25667E6000ED7A66 /* MultiNetworking.swift */,
+				09D0CD6025667EC700ED7A66 /* Constants.swift */,
+				09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */,
 			);
 			path = MultiNetworking;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 				TargetAttributes = {
 					09D0CD3B25667A8700ED7A66 = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 					};
 					09D0CD4425667A8800ED7A66 = {
 						CreatedOnToolsVersion = 12.2;
@@ -194,6 +204,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09D0CD652566800200ED7A66 /* InternetConnectionManager.swift in Sources */,
+				09D0CD5D25667E6000ED7A66 /* MultiNetworking.swift in Sources */,
+				09D0CD6125667EC700ED7A66 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +354,7 @@
 		09D0CD5125667A8800ED7A66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Q9QCT4ZGZ6;
@@ -359,6 +373,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -367,6 +382,7 @@
 		09D0CD5225667A8800ED7A66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = Q9QCT4ZGZ6;
@@ -393,6 +409,7 @@
 		09D0CD5425667A8800ED7A66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9QCT4ZGZ6;
 				INFOPLIST_FILE = MultiNetworkingTests/Info.plist;
@@ -411,6 +428,7 @@
 		09D0CD5525667A8800ED7A66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Q9QCT4ZGZ6;
 				INFOPLIST_FILE = MultiNetworkingTests/Info.plist;
