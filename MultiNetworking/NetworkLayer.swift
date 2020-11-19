@@ -12,10 +12,10 @@ typealias ErrorHandler = (String) -> Void
 
 class NetworkLayer {
     
-    static func getData(urlString: String,
+    static func getData<T: Decodable>(urlString: String,
                                parameters: [String : String]? = [:],
                                headers: [String : String]? = [:],
-                               successHandler: @escaping (Data) -> Void,
+                               successHandler: @escaping (T) -> Void,
                                errorHandler: @escaping ErrorHandler) {
         
         let completionHandler: NetworkCompletionHandler = { (data, urlResponse, error) in
@@ -27,11 +27,13 @@ class NetworkLayer {
             
             if self.isSuccessCode(urlResponse) {
                 guard let data = data else {
-                    print("Unable to parse the response")
-                    return errorHandler("Unable to parse the response")
+                    print("Unable to parse the response in given type \(T.self)")
+                    return errorHandler("Unable to parse the response in given type \(T.self)")
                 }
-                    successHandler(data)
+                if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
+                    successHandler(responseObject)
                     return
+                }
             }
             errorHandler(Constants.genericError)
         }
@@ -45,15 +47,9 @@ class NetworkLayer {
         var request = URLRequest(url: components.url!)
         
         request.allHTTPHeaderFields = headers
-        
-        if InternetConnectionManager.isConnectedToNetwork() {
-            URLSession.shared.dataTask(with: request,
-                                       completionHandler: completionHandler)
-                .resume()
-        } else {
-            errorHandler(Constants.noConnectionError)
-        }
-        
+        URLSession.shared.dataTask(with: request,
+                                   completionHandler: completionHandler)
+            .resume()
     }
     
     static private func isSuccessCode(_ statusCode: Int) -> Bool {
