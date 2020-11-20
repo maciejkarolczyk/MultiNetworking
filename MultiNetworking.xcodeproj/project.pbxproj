@@ -13,7 +13,7 @@
 		09D0CD5D25667E6000ED7A66 /* NetworkLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD5C25667E6000ED7A66 /* NetworkLayer.swift */; };
 		09D0CD6125667EC700ED7A66 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD6025667EC700ED7A66 /* Constants.swift */; };
 		09D0CD652566800200ED7A66 /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */; };
-		09D0CD692566897800ED7A66 /* MultiNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD682566897800ED7A66 /* MultiNetworking.swift */; };
+		09D0CD692566897800ED7A66 /* MultiNetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD682566897800ED7A66 /* MultiNetworkingManager.swift */; };
 		09D0CD6D2566914800ED7A66 /* QueryObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D0CD6C2566914800ED7A66 /* QueryObject.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 		09D0CD5C25667E6000ED7A66 /* NetworkLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLayer.swift; sourceTree = "<group>"; };
 		09D0CD6025667EC700ED7A66 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
-		09D0CD682566897800ED7A66 /* MultiNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNetworking.swift; sourceTree = "<group>"; };
+		09D0CD682566897800ED7A66 /* MultiNetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiNetworkingManager.swift; sourceTree = "<group>"; };
 		09D0CD6C2566914800ED7A66 /* QueryObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +86,7 @@
 				09D0CD5C25667E6000ED7A66 /* NetworkLayer.swift */,
 				09D0CD6025667EC700ED7A66 /* Constants.swift */,
 				09D0CD642566800200ED7A66 /* InternetConnectionManager.swift */,
-				09D0CD682566897800ED7A66 /* MultiNetworking.swift */,
+				09D0CD682566897800ED7A66 /* MultiNetworkingManager.swift */,
 				09D0CD6C2566914800ED7A66 /* QueryObject.swift */,
 			);
 			path = MultiNetworking;
@@ -214,7 +214,7 @@
 				09D0CD5D25667E6000ED7A66 /* NetworkLayer.swift in Sources */,
 				09D0CD6125667EC700ED7A66 /* Constants.swift in Sources */,
 				09D0CD6D2566914800ED7A66 /* QueryObject.swift in Sources */,
-				09D0CD692566897800ED7A66 /* MultiNetworking.swift in Sources */,
+				09D0CD692566897800ED7A66 /* MultiNetworkingManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
