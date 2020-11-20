@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "MultiNetworking"
-  spec.version      = "0.0.4"
+  spec.version      = "0.0.6"
   spec.summary      = "Networking layer for TwinEndpointApp."
 
   # This description is used to generate tags and improve search results.
@@ -53,7 +53,7 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.author             = { "Maciej Karolczyk" => "Maciej.Karolczyk@gft.com" }
+  spec.author             = { "Maciej Karolczyk" => "maciejkarolczyk@gmail.com" }
   # Or just: spec.author    = "Maciej Karolczyk"
   # spec.authors            = { "Maciej Karolczyk" => "Maciej.Karolczyk@gft.com" }
   # spec.social_media_url   = "https://twitter.com/Maciej Karolczyk"
