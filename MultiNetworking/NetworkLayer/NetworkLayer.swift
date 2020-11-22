@@ -21,21 +21,21 @@ class NetworkLayer {
         let completionHandler: NetworkCompletionHandler = { (data, urlResponse, error) in
             if let error = error {
                 print(error.localizedDescription)
-                errorHandler(Constants.genericError)
+                errorHandler(NetworkConstants.genericError)
                 return
             }
             
             if self.isSuccessCode(urlResponse) {
                 guard let data = data else {
-                    print("\(Constants.parsingError) \(T.self)")
-                    return errorHandler("\(Constants.parsingError) \(T.self)")
+                    print("\(NetworkConstants.parsingError) \(T.self)")
+                    return errorHandler("\(NetworkConstants.parsingError) \(T.self)")
                 }
                 if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
                     successHandler(responseObject)
                     return
                 }
             }
-            errorHandler("\(Constants.genericError) \(urlString)")
+            errorHandler("\(NetworkConstants.genericError) \(urlString)")
         }
         
         var components = URLComponents(string: urlString)!
@@ -47,9 +47,14 @@ class NetworkLayer {
         var request = URLRequest(url: components.url!)
         
         request.allHTTPHeaderFields = headers
-        URLSession.shared.dataTask(with: request,
-                                   completionHandler: completionHandler)
-            .resume()
+        if (InternetConnectionManager.isConnectedToNetwork()) {
+            URLSession.shared.dataTask(with: request,
+                                       completionHandler: completionHandler)
+                .resume()
+        } else {
+            errorHandler(NetworkConstants.noConnectionError)
+        }
+        
     }
     
     static private func isSuccessCode(_ statusCode: Int) -> Bool {

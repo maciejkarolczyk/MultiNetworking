@@ -7,9 +7,11 @@
 
 import Foundation
 
-class MultiNetworkingManager {
+public class MultiNetworkingManager {
     
-    func requestMultipleEndpoints<T:Decodable, A:Decodable>(queryItems:[QueryObject], completion: @escaping ((T?,A?,String?) -> Void)) {
+    public init() {}
+    
+    public func requestMultipleEndpoints<T:Decodable, A:Decodable>(queryItems:[QueryObject], completion: @escaping ((T?,A?,String?) -> Void)) {
         
         var resultOne: T?
         var resultTwo: A?
@@ -51,7 +53,7 @@ class MultiNetworkingManager {
         operationQueue.addOperations([operation1, operation2], waitUntilFinished: true)
     }
     
-    private func getData<T:Decodable>(queryObject:QueryObject, successHandler: @escaping (T) -> Void, failureHandler: @escaping (String) -> Void) {
+    public func getData<T:Decodable>(queryObject:QueryObject, successHandler: @escaping (T) -> Void, failureHandler: @escaping (String) -> Void) {
         NetworkLayer.getData(urlString: queryObject.requestType.endpoint, parameters: queryObject.parameters, headers: queryObject.headers) { (response:T) in
             successHandler(response)
         } errorHandler: { errorString in

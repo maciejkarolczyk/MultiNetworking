@@ -7,26 +7,26 @@
 
 import Foundation
 
-enum UserType : String {
+public enum UserType : String {
     case git, dailyMotion
     
     var endpoint:String {
         switch self {
         case .git:
-            return Constants.gitHubUsersEndpoint
+            return NetworkConstants.gitHubUsersEndpoint
         case .dailyMotion:
-            return Constants.dailyMotionEndpoint
+            return NetworkConstants.dailyMotionEndpoint
         }
     }
 }
 
-class QueryObject {
+public class QueryObject {
     
     var requestType:UserType
     var parameters: [String : String]?
     var headers: [String : String]?
     
-    internal init(requestType: UserType, parameters: [String : String]? = nil, headers: [String : String]? = nil) {
+    public init(requestType: UserType, parameters: [String : String]? = nil, headers: [String : String]? = nil) {
         self.requestType = requestType
         self.parameters = parameters
         self.headers = headers

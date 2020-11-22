@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Constants {
+struct NetworkConstants {
     
     // MARK: - Error Messages
     static let parsingError = "Unable to parse the response in given type"
