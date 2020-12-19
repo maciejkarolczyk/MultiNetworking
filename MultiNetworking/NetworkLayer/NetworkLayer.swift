@@ -20,41 +20,44 @@ class NetworkLayer {
         
         let completionHandler: NetworkCompletionHandler = { (data, urlResponse, error) in
             if let error = error {
-                print(error.localizedDescription)
-                errorHandler(NetworkConstants.genericError)
+                errorHandler(error.localizedDescription)
                 return
             }
             
             if self.isSuccessCode(urlResponse) {
                 guard let data = data else {
-                    print("\(NetworkConstants.parsingError) \(T.self)")
-                    return errorHandler("\(NetworkConstants.parsingError) \(T.self)")
+                    return errorHandler(NetworkConstants.noBodyError)
                 }
                 if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
                     successHandler(responseObject)
                     return
                 }
             }
-            errorHandler("\(NetworkConstants.genericError) \(urlString)")
+            if let urlResponse = urlResponse {
+                errorHandler(urlResponse.description)
+            }
         }
         
-        var components = URLComponents(string: urlString)!
+        var components = URLComponents(string: urlString)
         if let parameters = parameters {
-            components.queryItems = parameters.map { (key, value) in
+            components?.queryItems = parameters.map { (key, value) in
                 URLQueryItem(name: key, value: value)
             }
         }
-        var request = URLRequest(url: components.url!)
-        
-        request.allHTTPHeaderFields = headers
-        if (InternetConnectionManager.isConnectedToNetwork()) {
-            URLSession.shared.dataTask(with: request,
-                                       completionHandler: completionHandler)
-                .resume()
+        if let components = components, let url = components.url {
+            var request = URLRequest(url: url)
+            
+            request.allHTTPHeaderFields = headers
+            if (InternetConnectionManager.isConnectedToNetwork()) {
+                URLSession.shared.dataTask(with: request,
+                                           completionHandler: completionHandler)
+                    .resume()
+            } else {
+                errorHandler(NetworkConstants.noConnectionError)
+            }
         } else {
-            errorHandler(NetworkConstants.noConnectionError)
+            errorHandler(NetworkConstants.incorrectUrlStringError)
         }
-        
     }
     
     static private func isSuccessCode(_ statusCode: Int) -> Bool {

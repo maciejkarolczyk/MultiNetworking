@@ -10,9 +10,10 @@ import Foundation
 struct NetworkConstants {
     
     // MARK: - Error Messages
+    static let noBodyError = "Response from the server has no body"
     static let parsingError = "Unable to parse the response in given type"
-    static let genericError = "Something went wrong. Please try again later"
     static let noConnectionError = "Not connected to Internet"
+    static let incorrectUrlStringError = "Incorrect URL String"
     
     // MARK: - Endpoints
     static let dailyMotionEndpoint = "https://api.dailymotion.com/users?fields=avatar_360_url,username"
