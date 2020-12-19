@@ -11,10 +11,9 @@ public class MultiNetworkingManager {
     
     public init() {}
     
-    public func requestMultipleEndpoints<T:Decodable, A:Decodable>(queryItems:[QueryObject], completion: @escaping ((T?,A?,String?) -> Void)) {
+    public func requestMultipleEndpoints(queryItems:[QueryObject], completion: @escaping (([UserType:Data],String?) -> Void)) {
         
-        var resultOne: T?
-        var resultTwo: A?
+        var results:[UserType:Data] = [:]
         var error: String?
         
         let operationQueue = OperationQueue()
@@ -24,37 +23,26 @@ public class MultiNetworkingManager {
             
             for query in queryItems {
                 group.enter()
-                switch query.requestType {
-                case .git:
-                    self.getData(queryObject: query) { (response:T) in
-                        resultOne = response
-                        group.leave()
-                    } failureHandler: { errorString in
-                        error = errorString
-                        group.leave()
-                    }
-                case .dailyMotion:
-                    self.getData(queryObject: query) { (response:A) in
-                        resultTwo = response
-                        group.leave()
-                    } failureHandler: { errorString in
-                        error = errorString
-                        group.leave()
-                    }
+                self.getData(queryObject: query, successHandler: { (response) in
+                    results[query.requestType] = response
+                    group.leave()
+                }) { errorString in
+                    error = errorString
+                    group.leave()
                 }
             }
             group.wait()
             
         }
         let operation2 = BlockOperation {
-            completion(resultOne, resultTwo, error)
+            completion(results, error)
         }
         operation2.addDependency(operation1)
         operationQueue.addOperations([operation1, operation2], waitUntilFinished: true)
     }
     
-    public func getData<T:Decodable>(queryObject:QueryObject, successHandler: @escaping (T) -> Void, failureHandler: @escaping (String) -> Void) {
-        NetworkLayer.getData(urlString: queryObject.requestType.endpoint, parameters: queryObject.parameters, headers: queryObject.headers) { (response:T) in
+    public func getData(queryObject:QueryObject, successHandler: @escaping (Data) -> Void, failureHandler: @escaping (String) -> Void) {
+        NetworkLayer.getData(urlString: queryObject.requestType.endpoint, parameters: queryObject.parameters, headers: queryObject.headers) { response in
             successHandler(response)
         } errorHandler: { errorString in
             failureHandler(errorString)
