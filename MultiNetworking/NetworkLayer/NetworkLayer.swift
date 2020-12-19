@@ -12,11 +12,11 @@ typealias ErrorHandler = (String) -> Void
 
 class NetworkLayer {
     
-    static func getData<T: Decodable>(urlString: String,
-                               parameters: [String : String]? = [:],
-                               headers: [String : String]? = [:],
-                               successHandler: @escaping (T) -> Void,
-                               errorHandler: @escaping ErrorHandler) {
+    static func getData(urlString: String,
+                        parameters: [String : String]? = [:],
+                        headers: [String : String]? = [:],
+                        successHandler: @escaping (Data) -> Void,
+                        errorHandler: @escaping ErrorHandler) {
         
         let completionHandler: NetworkCompletionHandler = { (data, urlResponse, error) in
             if let error = error {
@@ -28,10 +28,8 @@ class NetworkLayer {
                 guard let data = data else {
                     return errorHandler(NetworkConstants.noBodyError)
                 }
-                if let responseObject = try? JSONDecoder().decode(T.self, from: data) {
-                    successHandler(responseObject)
-                    return
-                }
+                successHandler(data)
+                return
             }
             if let urlResponse = urlResponse {
                 errorHandler(urlResponse.description)
